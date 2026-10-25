@@ -3,12 +3,21 @@
 [![Python](https://img.shields.io/badge/Python-3.13%2B-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Infosys Springboard](https://img.shields.io/badge/Infosys%20Springboard-Virtual%20Internship%207.0-brightgreen.svg)](https://infyspringboard.onwingspan.com/)
+[![Milestone 1](https://img.shields.io/badge/Milestone%201-Completed%20%26%20Verified-brightgreen.svg)]()
+[![Milestone 2--4](https://img.shields.io/badge/Milestones%202--4-Planned%20(Pending)-orange.svg)]()
 
-An end-to-end Machine Learning recommendation system project developed under the **Infosys Springboard Virtual Internship 7.0**. The system analyzes TED Talk metadata, audience ratings, and full spoken transcripts to deliver personalized talk recommendations.
+An industry-aligned Machine Learning recommendation system project developed under the **Infosys Springboard Virtual Internship 7.0**. The system analyzes TED Talk metadata, audience affective ratings, and full spoken transcripts to deliver personalized recommendations.
 
-> **Current Milestone (Milestone 1 / Weeks 1-2):**
-> Implementation of **Module 1: Data Collection** and **Module 2: Data Exploration and Data Preprocessing** only.
-> *(Advanced feature engineering, TF-IDF, vector embeddings, collaborative filtering, and Streamlit app deployment are reserved for subsequent modules).*
+---
+
+## Project Status & Milestone Tracking
+
+| Milestone | Stage / Modules | Status | Deliverables / Notes |
+| :--- | :--- | :---: | :--- |
+| **Milestone 1** | **Module 1: Data Collection**<br>**Module 2: Data Exploration & Preprocessing** | **COMPLETED & VERIFIED** | Validated datasets, automated audit reports, 11 EDA charts, clean CSVs, and executed notebooks |
+| **Milestone 2** | **Module 3: Feature Engineering**<br>**Module 4: Content-Based Recommendation** | *PLANNED* | Text tokenization, TF-IDF / embeddings, metadata feature vectors, cosine similarity |
+| **Milestone 3** | **Module 5: Collaborative / Hybrid Engine**<br>**Module 6: Model Evaluation (Precision, Recall, NDCG)** | *PLANNED* | Simulated user-interaction matrix, hybrid scoring, rank evaluation |
+| **Milestone 4** | **Module 7: Interactive Streamlit Web Application** | *PLANNED* | Responsive UI for talk discovery, tag filtering, and recommendation serving |
 
 ---
 
@@ -17,29 +26,29 @@ An end-to-end Machine Learning recommendation system project developed under the
 2. [Repository Structure](#repository-structure)
 3. [Technology Stack](#technology-stack)
 4. [Module 1: Data Collection & Dataset Relationship Analysis](#module-1-data-collection--dataset-relationship-analysis)
-   - [Dataset Attribution & Licensing](#dataset-attribution--licensing)
-   - [Dataset Schema & Field Descriptions](#dataset-schema--field-descriptions)
+   - [Data Sources & Licensing](#data-sources--licensing)
+   - [Schema & Field Descriptions](#schema--field-descriptions)
    - [Candidate Key & Linking Analysis](#candidate-key--linking-analysis)
-   - [Missing Transcripts Investigation](#missing-transcripts-investigation)
-   - [Dataset Limitations](#dataset-limitations)
+   - [Investigation of Missing Transcripts](#investigation-of-missing-transcripts)
+   - [Investigation of User Interaction Data](#investigation-of-user-interaction-data)
 5. [Module 2: Data Exploration & Preprocessing](#module-2-data-exploration--preprocessing)
    - [Initial Data Assessment & Quality Report](#initial-data-assessment--quality-report)
    - [Exploratory Data Analysis (EDA) Highlights](#exploratory-data-analysis-eda-highlights)
    - [Data Cleaning & Transformation Decisions](#data-cleaning--transformation-decisions)
-   - [Before-and-After Validation](#before-and-after-validation)
+   - [Before-and-After Validation Report](#before-and-after-validation-report)
 6. [Generated Deliverables & Outputs](#generated-deliverables--outputs)
 7. [Installation & Execution Guide](#installation--execution-guide)
-8. [Next Steps (Module 3 Roadmap)](#next-steps-module-3-roadmap)
+8. [Next Steps (Milestone 2 Roadmap)](#next-steps-milestone-2-roadmap)
 
 ---
 
 ## Project Overview
 
-With thousands of TED Talks spanning science, technology, education, design, business, and humanities, users face significant discovery challenges. This project builds a machine-learning recommender system combining:
-- **Content-Based Filtering:** Recommending talks based on transcript semantics, tags, speaker topics, and emotional ratings.
-- **Collaborative Filtering:** Modeling user viewing patterns and community engagement dynamics.
+With thousands of TED Talks spanning science, technology, education, design, business, and humanities, users encounter substantial information overload. This project builds a machine-learning recommendation system combining:
+- **Content-Based Filtering:** Recommending talks based on transcript semantics, tags, speaker domain, and audience emotional ratings.
+- **Collaborative / Hybrid Filtering:** Modeling user viewing patterns and community engagement dynamics.
 
-This phase completes the foundational data engineering lifecycle: gathering, verifying, exploring, auditing, and cleaning the corpus.
+Milestone 1 establishes the complete data engineering lifecycle: gathering, verifying, exploring, auditing, cleaning, and engineering foundational features.
 
 ---
 
@@ -50,13 +59,14 @@ TED Talks Recommendation System/
 ├── data/
 │   ├── ted_main.csv               # Original raw TED Talk metadata (2,550 records, 17 columns)
 │   ├── transcripts.csv            # Original raw transcripts (2,467 records, 2 columns)
-│   ├── ted_main_cleaned.csv       # Cleaned & feature-engineered metadata (2,550 records, 27 columns)
+│   ├── ted_main_cleaned.csv       # Cleaned & feature-engineered metadata (2,550 records, 28 columns)
 │   └── transcripts_cleaned.csv    # Cleaned, deduplicated transcripts (2,464 records, 7 columns)
 ├── notebooks/
-│   ├── 01_data_collection.ipynb   # Module 1: Ingestion, schema audit, key analysis & licensing
-│   └── 02_eda_preprocessing.ipynb # Module 2: In-depth EDA charts, data cleaning & validation
+│   ├── 01_data_collection.ipynb   # Module 1: Pre-executed ingestion, schema audit & key analysis
+│   └── 02_eda_preprocessing.ipynb # Module 2: Pre-executed EDA charts, data cleaning & validation
 ├── reports/
 │   ├── data_quality_report.csv    # Granular 19-column quality audit (nulls, blanks, padding, issues)
+│   ├── before_after_validation.csv# Before-and-after cleaning delta metrics and rationale
 │   └── eda/                       # 11 Publication-grade visualization charts (PNG, 300 DPI)
 │       ├── 01_top_tags.png
 │       ├── 02_duration_distribution.png
@@ -71,8 +81,10 @@ TED Talks Recommendation System/
 │       └── 11_transcript_coverage.png
 ├── src/
 │   └── data_processing.py         # Production-grade, reusable cleaning & EDA pipeline script
+├── DATA_SOURCES.md                # Comprehensive data source documentation, licensing, & provenance
 ├── requirements.txt               # Pinned Python package dependencies
-└── README.md                      # Project documentation and reproduction guide
+├── .gitignore                     # Git rules ignoring virtual environments, caches, and secrets
+└── README.md                      # Project documentation and execution guide
 ```
 
 ---
@@ -80,84 +92,64 @@ TED Talks Recommendation System/
 ## Technology Stack
 
 - **Language:** Python 3.13+
-- **Data Manipulation & Analysis:** Pandas, NumPy
-- **Data Visualization:** Matplotlib, Seaborn
-- **Interactive Notebooks:** Jupyter Notebook, nbformat, nbconvert
-- **Text & Preprocessing:** Regex (`re`), AST (`ast.literal_eval`), Scikit-learn
+- **Data Manipulation:** Pandas, NumPy
+- **Visualizations:** Matplotlib, Seaborn
+- **Notebooks:** Jupyter Notebook, nbformat, nbconvert
+- **Text & Transformation:** Regex (`re`), AST (`ast.literal_eval`), Scikit-learn
+- **Version Control:** Git, GitHub
 
 ---
 
 ## Module 1: Data Collection & Dataset Relationship Analysis
 
-### Dataset Attribution & Licensing
+### Data Sources & Licensing
+Detailed documentation is provided in [`DATA_SOURCES.md`](DATA_SOURCES.md). Summary:
+- **Source:** Kaggle TED Talks Dataset (`rounakbanik/ted-talks`), scraped from official [TED.com](https://www.ted.com) talk pages.
+- **Curator & Attribution:** Rounak Banik; TED Conferences LLC.
+- **Licensing:** Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International ([CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)) and TED.com Terms of Use for non-commercial educational use.
+- **Temporal Coverage:** Talks filmed between May 1972 and August 2017; published on ted.com through September 21, 2017.
 
-| Dimension | Details |
-| :--- | :--- |
-| **Dataset Source** | Kaggle TED Talks Dataset (`rounakbanik/ted-talks`), scraped from the official TED website ([ted.com](https://www.ted.com)). |
-| **Curator / Attribution** | Rounak Banik; TED Conferences LLC. |
-| **Licensing** | Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International ([CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)) and TED Terms of Use for non-commercial educational use. |
-| **Temporal Span** | Talks filmed between May 1972 and August 2017; published on ted.com through September 21, 2017. |
-
-### Dataset Schema & Field Descriptions
-
-#### 1. Metadata (`data/ted_main.csv` - 2,550 Rows, 17 Columns)
-- `comments` (*int64*): Number of public first-level comments on ted.com.
-- `description` (*object*): Concise textual synopsis of the talk.
-- `duration` (*int64*): Talk duration in seconds.
-- `event` (*object*): TED conference or partner event (e.g., `TED2006`, `TEDGlobal 2012`, `TEDx`).
-- `film_date` (*int64*): Unix epoch timestamp of when the talk was filmed.
-- `languages` (*int64*): Number of subtitle translations available.
-- `main_speaker` (*object*): Name of the primary speaker.
-- `name` (*object*): Formal title combining speaker and talk title (e.g., `Ken Robinson: Do schools kill creativity?`).
-- `num_speaker` (*int64*): Number of speakers participating in the talk.
-- `published_date` (*int64*): Unix epoch timestamp of when the talk was published to ted.com.
-- `ratings` (*object*): JSON-encoded list of dictionaries recording audience emotional response votes.
-- `related_talks` (*object*): JSON-encoded list of recommended related talks.
-- `speaker_occupation` (*object*): Professional background/title of the speaker (6 missing values).
-- `tags` (*object*): String-encoded Python list of topic keywords.
-- `title` (*object*): Official title of the talk.
-- `url` (*object*): Web URL to the talk page on ted.com (contains trailing `\n` in raw data).
-- `views` (*int64*): Cumulative view count on ted.com.
-
-#### 2. Transcripts (`data/transcripts.csv` - 2,467 Rows, 2 Columns)
-- `transcript` (*object*): Full English verbatim spoken transcript.
-- `url` (*object*): Talk page URL on ted.com (contains trailing `\n` in raw data).
+### Schema & Field Descriptions
+- **`data/ted_main.csv` (2,550 rows, 17 columns):**
+  `comments`, `description`, `duration`, `event`, `film_date`, `languages`, `main_speaker`, `name`, `num_speaker`, `published_date`, `ratings`, `related_talks`, `speaker_occupation`, `tags`, `title`, `url`, `views`.
+- **`data/transcripts.csv` (2,467 rows, 2 columns):**
+  `transcript`, `url`.
 
 ### Candidate Key & Linking Analysis
 1. **Candidate Keys Evaluated:**
    - `name`: Unique in metadata (2,550), but does not exist in `transcripts.csv`.
    - `title`: Unique in metadata (2,550), but does not exist in `transcripts.csv`.
-   - `url`: Available in both datasets.
-2. **Formatting Anomaly Discovered:**
-   - Every single `url` in both `ted_main.csv` and `transcripts.csv` contained a trailing newline character (`\n`) and whitespace.
-   - Once stripped (`url.str.strip()`), URLs formed an exact 1:1 join key.
-3. **Duplicate Detection in Transcripts:**
-   - Raw `transcripts.csv` had 2,467 rows but only 2,464 unique URLs.
-   - Exactly 3 URLs were duplicated (rows 1107–1109 and 1114–1116):
-     - `https://www.ted.com/talks/brene_brown_listening_to_shame`
-     - `https://www.ted.com/talks/jonathan_haidt_humanity_s_stairway_to_self_transcendence`
-     - `https://www.ted.com/talks/rob_reid_the_8_billion_ipod`
-   - Verifying word-for-word string equality confirmed these were 100% identical exact duplicate rows, which were safely deduplicated.
+   - `url`: Available in both datasets and serves as the linking primary/foreign key.
+2. **Formatting Anomaly Discovered & Fixed:**
+   - Every `url` in both raw files contained a trailing newline (`\n`) and whitespace padding. Stripping whitespace (`df['url'].str.strip()`) restored clean 1:1 joinability.
+3. **Exact Duplicates in Transcripts:**
+   - Identified 3 duplicate talk URLs in `transcripts.csv` (rows 1107–1109 vs 1114–1116).
+   - Comparing verbatim text confirmed they were 100% identical duplicates. Dropping duplicates retained **2,464 unique talk transcripts**.
 4. **Dataset Overlap:**
    - **Common Talks:** 2,464 talks (96.63% of metadata, 100% of unique transcripts).
    - **Metadata Only:** 86 talks (3.37% of metadata).
    - **Transcripts Only:** 0 talks (100% transcript coverage against metadata).
 
-### Missing Transcripts Investigation
+### Investigation of Missing Transcripts
 Why are 86 talks in `ted_main.csv` missing from `transcripts.csv`?
 A domain audit revealed titles such as:
-- *"A dance of 'Symbiosis'"* (dance/performance)
-- *"A string quartet plays 'Blue Room'"* (instrumental live music)
-- *"'Woza'"* and *"'M'Bifo'"* (guitar performance)
-- *"Piano jazz that rocks"* (jazz piano)
-- *"An electrifying organ performance"* (instrumental organ)
+- *"A dance of 'Symbiosis'"* (Choreography/dance)
+- *"A string quartet plays 'Blue Room'"* (Live cello/string quartet)
+- *"'Woza'"* and *"'M'Bifo'"* (Live African guitar)
+- *"Piano jazz that rocks"* (Instrumental jazz piano)
+- *"An electrifying organ performance"* (Organ showcase)
 
-These 86 talks represent **musical performances, dances, and artistic demonstrations**. Because they contain no spoken dialogue, TED never created transcripts for them. This is authentic domain behavior rather than data corruption.
+**Domain Finding:** These 86 talks are **instrumental musical performances, choreographies, and non-verbal artistic showcases**. Because there was no spoken speech, official TED transcripts were naturally never created.
+This represents authentic domain behavior rather than data corruption. Recommendation pipelines in later modules will use `title`, `description`, and `clean_tags` for content modeling on these non-spoken items.
 
-### Dataset Limitations
-1. **Static Temporal Cutoff:** Data is limited to talks published through September 2017.
-2. **Absence of User-Level Interaction Logs:** The dataset contains aggregate community ratings, but no individual user watch histories or per-user rating matrices. Collaborative filtering in subsequent modules must leverage synthesized interaction matrices or rating-vector user profiles.
-3. **86 Non-Verbal Talks:** Recommender features requiring transcript text must implement graceful fallbacks to `title`, `description`, and `tags` for performance talks.
+### Investigation of User Interaction Data
+In accordance with Milestone 1 specifications:
+- **Finding:** The public TED dataset **does not contain individual user IDs, per-user watch histories, timestamps of user views, or user-level rating interaction logs**.
+- **Available Interaction Signals:**
+  1. `views`: Cumulative community view counts per talk.
+  2. `comments`: Total comment count per talk.
+  3. `ratings`: Aggregate community vote tallies across 14 emotional dimensions (e.g., *Inspiring*, *Informative*, *Fascinating*).
+- **Project Decision:** Genuine per-user interaction logs **do not exist** in the public archive. In subsequent collaborative filtering modules, this limitation will be accommodated using simulated user interaction matrices or affinity vectors derived from aggregate rating profiles, rather than inventing false user histories.
 
 ---
 
@@ -195,40 +187,51 @@ All 11 visualizations are saved at 300 DPI in [`reports/eda/`](reports/eda/):
 | **Transcript Deduplication** | Dropped 3 confirmed exact duplicate rows | Guarantees exactly one unique transcript per talk URL (2,464 rows retained). |
 | **Tag List Parsing** | Parsed via `ast.literal_eval` into clean lowercased tokens; engineered `tag_count` and `clean_tags` | Converts raw strings into structured lists and space-separated strings for NLP vectorizers. |
 | **Rating Feature Engineering** | Parsed rating dictionaries to extract `total_ratings` and `top_rating` | Enables affective / sentiment-based recommendation signals. |
+| **Categorical Encoding** | Mapped `top_rating` into `top_rating_code` (0 to 13) | Provides a clean numerical baseline for data preparation without discarding readable strings. |
 | **Datetime Normalization** | Converted Unix epochs to `film_datetime`, `published_datetime`, and `published_year` | Enables temporal filtering and recency weighting. |
 | **Duration in Minutes** | Derived `duration_minutes = round(duration / 60, 2)` | Standardizes duration for human readability and length-based filtering. |
 | **Transcript Text Cleaning** | Removed stage directions like `(Applause)` / `(Laughter)`, lowercased, normalized punctuation and whitespace | Cleans non-lexical acoustic noise while preserving the full verbatim transcript in `transcript`. |
 | **Coverage Flagging** | Added `has_transcript` binary column ($1$ if transcript available, $0$ otherwise) | Allows downstream recommendation models to route features dynamically. |
 
-### Before-and-After Validation
+### Before-and-After Validation Report
+The automated audit table is saved to [`reports/before_after_validation.csv`](reports/before_after_validation.csv):
 
-| Metric / Dimension | `ted_main` (Raw) | `ted_main_cleaned` | `transcripts` (Raw) | `transcripts_cleaned` |
-| :--- | :---: | :---: | :---: | :---: |
-| **Total Rows** | 2,550 | 2,550 | 2,467 | 2,464 |
-| **Total Columns** | 17 | 27 | 2 | 7 |
-| **Total Missing Values** | 6 | **0** | 0 | **0** |
-| **Duplicate Rows** | 0 | **0** | 3 | **0** |
-| **Records Retained** | — | **2,550 (100%)** | — | **2,464 (99.88%)** |
-| **Records Removed** | — | **0** | — | **3 (Exact Duplicates)** |
+| Dataset | Metric | Raw Value | Cleaned Value | Delta | Rationale & Notes |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| **`ted_main.csv`** | Total Records (Rows) | 2,550 | 2,550 | 0 | 100% of metadata records preserved (0 deleted) |
+| **`ted_main.csv`** | Total Features (Columns) | 17 | 28 | +11 | Engineered `clean_tags`, `tag_count`, `total_ratings`, `top_rating`, `top_rating_code`, `duration_minutes`, datetimes |
+| **`ted_main.csv`** | Missing Values Count | 6 | **0** | -6 | Imputed 6 missing `speaker_occupation` rows with `'Unknown'` |
+| **`ted_main.csv`** | Duplicate Rows | 0 | **0** | 0 | Zero duplicate records in metadata |
+| **`ted_main.csv`** | Whitespace-Padded URLs | 2,550 | **0** | -2,550 | Stripped trailing newline (`\n`) and whitespace from all URLs |
+| **`transcripts.csv`** | Total Records (Rows) | 2,467 | 2,464 | -3 | Removed 3 confirmed exact duplicate rows; 2,464 unique talks retained |
+| **`transcripts.csv`** | Total Features (Columns) | 2 | 7 | +5 | Engineered `clean_transcript`, `char_count`, `word_count`, `clean_char_count`, `clean_word_count` |
+| **`transcripts.csv`** | Missing Values Count (Transcript) | 0 | **0** | 0 | Zero missing verbatim transcripts |
+| **`transcripts.csv`** | Duplicate Rows | 3 | **0** | -3 | Exact duplicate transcript rows dropped (1 unique row per talk URL) |
+| **`transcripts.csv`** | Whitespace-Padded URLs | 2,467 | **0** | -2,467 | Stripped trailing newline (`\n`) and whitespace from all URLs |
+
+*\*Note on non-spoken performances: 8 musical/dance performance talks originally contained only acoustic notes (e.g. `(Music)(Applause)`). When stage notes are stripped, `clean_transcript` correctly reflects 0 words (`""`), while the full verbatim text is preserved in `transcript`.*
 
 ---
 
 ## Generated Deliverables & Outputs
 
 1. **Cleaned Datasets:**
-   - [`data/ted_main_cleaned.csv`](data/ted_main_cleaned.csv) (2,550 rows, 27 columns, 7.95 MB)
+   - [`data/ted_main_cleaned.csv`](data/ted_main_cleaned.csv) (2,550 rows, 28 columns, 7.97 MB)
    - [`data/transcripts_cleaned.csv`](data/transcripts_cleaned.csv) (2,464 rows, 7 columns, 55.76 MB)
-2. **Quality & Audit Reports:**
+2. **Quality & Validation Reports:**
    - [`reports/data_quality_report.csv`](reports/data_quality_report.csv) (Granular audit across 19 columns)
+   - [`reports/before_after_validation.csv`](reports/before_after_validation.csv) (Before/after validation delta matrix)
 3. **Exploratory Visualizations:**
-   - [`reports/eda/`](reports/eda/) (11 publication-grade PNG charts)
+   - [`reports/eda/`](reports/eda/) (11 publication-grade PNG charts at 300 DPI)
 4. **Interactive Jupyter Notebooks:**
    - [`notebooks/01_data_collection.ipynb`](notebooks/01_data_collection.ipynb) (Fully executed, 24 cells)
    - [`notebooks/02_eda_preprocessing.ipynb`](notebooks/02_eda_preprocessing.ipynb) (Fully executed, 44 cells)
 5. **Reusable Python Pipeline:**
    - [`src/data_processing.py`](src/data_processing.py) (Modular, tested end-to-end cleaning and EDA script)
-6. **Dependencies:**
-   - [`requirements.txt`](requirements.txt)
+6. **Documentation & Dependencies:**
+   - [`DATA_SOURCES.md`](DATA_SOURCES.md) (Data sources, schemas, licensing, and limitations)
+   - [`requirements.txt`](requirements.txt) (Pinned package dependencies)
+   - [`.gitignore`](.gitignore) (Ignoring virtual environments, caches, and credentials)
 
 ---
 
@@ -237,8 +240,9 @@ All 11 visualizations are saved at 300 DPI in [`reports/eda/`](reports/eda/):
 ### 1. Environment Setup
 Clone the repository and install required packages:
 ```bash
-# Clone repository (if applicable) or navigate to project folder
-cd "e:\infosys\TED Talks Recommendation System"
+# Clone repository
+git clone https://github.com/leena-11/ted-talks-recommendation-system.git
+cd "ted-talks-recommendation-system"
 
 # Install dependencies
 pip install -r requirements.txt
@@ -255,7 +259,7 @@ Start Jupyter Notebook to inspect the executed workflows:
 ```bash
 jupyter notebook
 ```
-Navigate to:
+Open:
 - `notebooks/01_data_collection.ipynb`
 - `notebooks/02_eda_preprocessing.ipynb`
 
@@ -263,18 +267,16 @@ Both notebooks are pre-executed with all cell outputs, tables, and charts visibl
 
 ---
 
-## Next Steps (Module 3 Roadmap)
+## Next Steps (Milestone 2 Roadmap)
 
-Per the Infosys Springboard requirements, subsequent modules will implement:
-- **Module 3: Feature Engineering**
+Per the Infosys Springboard roadmap, subsequent milestones will implement:
+- **Milestone 2: Feature Engineering & Content-Based Recommendation Engine**
   - Text tokenization and lemmatization (NLTK / spaCy).
   - TF-IDF feature extraction on cleaned transcripts, tags, and talk descriptions.
-  - Aggregation of metadata features (duration, emotional ratings, publication recency).
-- **Module 4: Recommendation Engine Development**
-  - Content-based cosine similarity matrix computation.
-  - User profile modeling and simulated user-item interaction matrix.
+  - Cosine similarity matrix computation and content-based recommendation ranking.
+- **Milestone 3: Collaborative Filtering & Model Evaluation**
+  - Simulated user interaction modeling.
   - Hybrid recommendation algorithm combining content semantics and rating distributions.
-- **Module 5: Evaluation & Validation**
-  - Precision@K, Recall@K, MAP (Mean Average Precision), and NDCG metrics.
-- **Module 6: Streamlit Web Application Deployment**
-  - Interactive web interface for real-time talk discovery, tag filtering, and recommendation exploration.
+  - Quantitative evaluation using Precision@K, Recall@K, MAP, and NDCG metrics.
+- **Milestone 4: Interactive Streamlit Web Application**
+  - Interactive UI for real-time talk discovery, tag filtering, and recommendation exploration.

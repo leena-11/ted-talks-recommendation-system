@@ -843,29 +843,10 @@ We formally validate the before-and-after states to verify data integrity."""
 
     # Cell 28: Code - Validation
     nb.cells.append(new_code_cell(
-"""val = validate_cleaning(df_main_raw, df_main_clean, df_trans_raw, df_trans_clean)
-
-val_df = pd.DataFrame([
-    {
-        "Dataset": "ted_main",
-        "Raw_Shape": str(val["metadata"]["raw_shape"]),
-        "Clean_Shape": str(val["metadata"]["clean_shape"]),
-        "Raw_Nulls": val["metadata"]["raw_nulls"],
-        "Clean_Nulls": val["metadata"]["clean_nulls"],
-        "Records_Retained": val["metadata"]["records_retained"],
-        "Duplicates_Removed": val["metadata"]["records_removed"]
-    },
-    {
-        "Dataset": "transcripts",
-        "Raw_Shape": str(val["transcripts"]["raw_shape"]),
-        "Clean_Shape": str(val["transcripts"]["clean_shape"]),
-        "Raw_Nulls": val["transcripts"]["raw_nulls"],
-        "Clean_Nulls": val["transcripts"]["clean_nulls"],
-        "Records_Retained": val["transcripts"]["records_retained"],
-        "Duplicates_Removed": val["transcripts"]["records_removed"]
-    }
-])
-display(val_df)
+"""val_csv_path = reports_dir / "before_after_validation.csv"
+val = validate_cleaning(df_main_raw, df_main_clean, df_trans_raw, df_trans_clean, output_csv_path=val_csv_path)
+print(f"Before-and-after validation report saved to: {val_csv_path.resolve()}")
+display(val["table"])
 
 print("\\n=== Data Cleaning Decisions & Rationale ===")
 display(pd.DataFrame(val["cleaning_decisions"]))
