@@ -1,0 +1,20 @@
+Dataset,Column,Data_Type,Total_Records,Non_Null_Count,Missing_Count,Missing_Pct,Blank_Strings,Whitespace_Padded,Unique_Values,Sample_Value,Quality_Assessment
+ted_main.csv,comments,int64,2550,2550,0,0.0,0,0,559,4553,Clean
+ted_main.csv,description,object,2550,2550,0,0.0,0,53,2550,Sir Ken Robinson makes an entertainin...,53 whitespace/newline padded
+ted_main.csv,duration,int64,2550,2550,0,0.0,0,0,1083,1164,Clean
+ted_main.csv,event,object,2550,2550,0,0.0,0,1,355,TED2006,1 whitespace/newline padded
+ted_main.csv,film_date,int64,2550,2550,0,0.0,0,0,735,1140825600,Unix epoch timestamps in seconds
+ted_main.csv,languages,int64,2550,2550,0,0.0,0,0,66,60,Clean
+ted_main.csv,main_speaker,object,2550,2550,0,0.0,0,6,2156,Ken Robinson,6 whitespace/newline padded
+ted_main.csv,name,object,2550,2550,0,0.0,0,1,2550,Ken Robinson: Do schools kill creativ...,1 whitespace/newline padded
+ted_main.csv,num_speaker,int64,2550,2550,0,0.0,0,0,5,1,Clean
+ted_main.csv,published_date,int64,2550,2550,0,0.0,0,0,2490,1151367060,Unix epoch timestamps in seconds
+ted_main.csv,ratings,object,2550,2550,0,0.0,0,0,2550,"[{'id': 7, 'name': 'Funny', 'count': ...",String-encoded list of dicts; needs literal_eval
+ted_main.csv,related_talks,object,2550,2550,0,0.0,0,0,2550,"[{'id': 865, 'hero': 'https://pe.tedc...",Clean
+ted_main.csv,speaker_occupation,object,2550,2544,6,0.235,0,42,1458,Author/educator,6 nulls (0.235%); 42 whitespace/newline padded
+ted_main.csv,tags,object,2550,2550,0,0.0,0,0,2530,"['children', 'creativity', 'culture',...",String-encoded list; needs literal_eval
+ted_main.csv,title,object,2550,2550,0,0.0,0,8,2550,Do schools kill creativity?,8 whitespace/newline padded
+ted_main.csv,url,object,2550,2550,0,0.0,0,2550,2550,https://www.ted.com/talks/ken_robinso...,2550 whitespace/newline padded; Trailing newline characters (\n)
+ted_main.csv,views,int64,2550,2550,0,0.0,0,0,2550,47227110,Clean
+transcripts.csv,transcript,object,2467,2467,0,0.0,0,0,2464,Good morning. How are you?(Laughter)I...,Clean
+transcripts.csv,url,object,2467,2467,0,0.0,0,2467,2464,https://www.ted.com/talks/ken_robinso...,2467 whitespace/newline padded; Trailing newline characters (\n)
