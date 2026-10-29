@@ -1,0 +1,10 @@
+Metric,Value
+Total Talks Processed,2550
+Talks with Genuine Transcripts,"2,464 (96.63%)"
+Non-Spoken / Performance Talks (No Transcript),86 (Handled safely with metadata)
+Average Transcript Word Count,863.5 words
+Median Talk Duration,14.1 minutes
+Average Views,"1,698,297 views"
+Unique Speakers,"2,156"
+Unique Topic Tags Extracted,416
+User-Item Interaction Matrix,Unavailable (Public TED dataset contains aggregate community views/ratings; individual user watch logs are not present in genuine data).

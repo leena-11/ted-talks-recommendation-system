@@ -1,0 +1,2 @@
+status,reason,collaborative_filtering_readiness,schema_design
+Unavailable,"The public TED Talks dataset contains community aggregate metrics (views, comments, ratings counts) per talk rather than individualized user IDs or per-user watch histories.",Cannot be genuinely trained without fabricating data. A content-based recommendation approach using TF-IDF and metadata cosine similarity is the appropriate and principled solution.,"If user logs are introduced, user-item interaction matrix should be configured with (user_id, talk_id, rating_or_watch_ratio)."
